@@ -16,6 +16,11 @@ class MyFunSetSuite extends FunSuite {
 
     val s12 = union(s1, s2)
     val s23 = union(s2, s3)
+
+    val s123 = union(s12, s23)
+
+    def odd(n: Int) = 
+      n % 2 != 0
   }
 
   test("singleton") {
@@ -41,6 +46,15 @@ class MyFunSetSuite extends FunSuite {
       assert(contains(difference, 1))
       assert(!contains(difference, 2))
       assert(!contains(difference, 3))
+    }
+  }
+
+  test("filter") {
+    new TestSets {
+      val onlyOdd = filter(s123, odd)
+      assert(contains(onlyOdd, 1))
+      assert(!contains(onlyOdd, 2))
+      assert(contains(onlyOdd, 3))
     }
   }
 }
