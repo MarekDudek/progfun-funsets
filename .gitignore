@@ -4,6 +4,8 @@
 .project
 .settings/
 
-
 project/project/target/
 project/target/
+target/
+
+lib_managed
