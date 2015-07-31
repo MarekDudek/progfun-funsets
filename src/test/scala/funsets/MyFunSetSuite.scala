@@ -81,4 +81,12 @@ class MyFunSetSuite extends FunSuite {
       assert(!exists(s123, divisibleBySeven))
     }
   }
+
+  test("map") {
+    new TestSets {
+      val tripled = map(s12, x => x * 3)
+      assert(contains(tripled, 3))
+      assert(contains(tripled, 6))
+    }
+  }
 }
