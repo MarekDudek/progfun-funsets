@@ -19,8 +19,14 @@ class MyFunSetSuite extends FunSuite {
 
     val s123 = union(s12, s23)
 
-    def odd(n: Int) = 
+    def odd(n: Int) =
       n % 2 != 0
+
+    def divisibleBySeven =
+      (x: Int) => x % 7 == 0
+
+    def notDivisibleBySeven(x: Int) =
+      !divisibleBySeven(x)
   }
 
   test("singleton") {
@@ -55,6 +61,24 @@ class MyFunSetSuite extends FunSuite {
       assert(contains(onlyOdd, 1))
       assert(!contains(onlyOdd, 2))
       assert(contains(onlyOdd, 3))
+    }
+  }
+
+  test("forall") {
+    new TestSets {
+      assert(forall(s123, x => true))
+      assert(!forall(s123, x => false))
+      assert(forall(s123, notDivisibleBySeven))
+      assert(!forall(s123, odd))
+    }
+  }
+
+  test("exists") {
+    new TestSets {
+      assert(exists(s123, x => true))
+      assert(!exists(s123, x => false))
+      assert(exists(s123, odd))
+      assert(!exists(s123, divisibleBySeven))
     }
   }
 }
